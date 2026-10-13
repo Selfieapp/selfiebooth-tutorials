@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Interactive tutorials for the Selfie Booth AI app: learn the 360 Photo Booth screen by screen, in English, Spanish and French.">
+<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Tutorials · Selfie Booth AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: site sections stay on the site's white ground; the guide showcase is a dark "app stage" block; opening the guide swaps in a full-screen viewer. */
+:root{
+  --bg:#ffffff; --bg-soft:#fbf9fb; --panel:#ffffff; --panel-2:#f6f2f6; --line:#e6e6e6;
+  --fg:#0d0c10; --muted:#26222b; --faint:#55505c;
+  --pink:#e31356; --pink-soft:#fde7ef; --violet:#8f5cff; --amber:#b86e00;
+  --plum:#1f1229; --plum-2:#291935; --plum-line:#3b2a49; --on-plum:#f7eff8; --muted-plum:#c2b0cc; --faint-plum:#8f7b9c; --pink-glow:#ff4f93;
+  --display:"Poppins",ui-sans-serif,system-ui,sans-serif;
+  --body:"Poppins",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--pink);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1160px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+
+.ribbon{background:var(--pink-soft);color:var(--muted);font-size:13px;text-align:center;padding:7px 16px}
+.ribbon b{color:var(--pink);font-weight:600}
+
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;align-items:center;gap:24px;height:68px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.01em;white-space:nowrap}
+.brand i{width:30px;height:30px;border-radius:9px;background:var(--pink);display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:700;color:#fff}
+.brand span{color:var(--pink)}
+nav.top{display:flex;gap:24px;margin-left:auto;font-size:15px;font-weight:500;color:var(--muted)}
+nav.top a{text-decoration:none}
+nav.top a[aria-current]{color:var(--fg);font-weight:600;box-shadow:0 2px 0 var(--pink)}
+.dl{white-space:nowrap;text-decoration:none;font-weight:600;font-size:14px;padding:9px 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--panel)}
+@media (max-width:860px){nav.top{display:none}.dl{margin-left:auto}}
+
+.hero{padding-block:clamp(36px,6vw,64px) 8px;display:flex;flex-wrap:wrap;align-items:flex-end;gap:20px 40px}
+.hero-text{flex:1 1 460px;min-width:0}
+.eyebrow{font-size:clamp(14px,1.3vw,17px);letter-spacing:.02em;text-transform:uppercase;color:var(--pink);font-weight:600}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(36px,5.6vw,64px);line-height:1.04;letter-spacing:-.025em;margin:8px 0 16px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--pink)}
+.lede{color:var(--muted);font-weight:500;font-size:clamp(16px,1.6vw,19px);max-width:56ch;margin:0}
+.seg{display:inline-flex;padding:4px;border-radius:999px;background:var(--panel-2);border:1px solid var(--line)}
+.seg button{border:0;background:none;padding:7px 16px;border-radius:999px;font-weight:600;font-size:14px;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+
+/* the dark app stage: re-maps the shared tokens to the app's own palette */
+.feature{--panel-2:#fdeef4;
+  color:var(--fg);margin-block:36px 40px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,4vw,56px);align-items:center;
+  background:radial-gradient(90% 80% at 20% 45%,rgba(227,19,86,.13),transparent 62%),linear-gradient(180deg,#fff,#fbf7fa);
+  border:1px solid var(--line);border-radius:28px;padding:clamp(22px,4vw,48px);box-shadow:0 24px 50px -32px rgba(227,19,86,.35)}
+@media (max-width:860px){.feature{grid-template-columns:minmax(0,1fr)}}
+
+.stage{position:relative;margin-bottom:56px;height:clamp(420px,52vw,560px);display:flex;justify-content:center;align-items:center}
+.phone{position:absolute;width:clamp(190px,21vw,252px);aspect-ratio:420/909;border-radius:34px;padding:7px;background:#0b0610;box-shadow:0 30px 50px -22px rgba(60,10,40,.45),inset 0 0 0 1.5px #4a3a56;max-width:100%}
+.phone img{display:block;width:100%;height:100%;object-fit:cover;border-radius:28px}
+.phone.back{transform:translate(-34%,4%) rotate(-7deg);opacity:.9}
+.phone.back2{transform:translate(34%,6%) rotate(7deg);opacity:.9}
+button.phone.front{position:relative;z-index:2;cursor:pointer;border:0;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+button.phone.front:hover{transform:translateY(-6px) scale(1.015)}
+.pulse{position:absolute;left:50%;top:50.4%;width:62%;height:7.5%;transform:translate(-50%,-50%);border-radius:999px;pointer-events:none;animation:ring 2.2s ease-out infinite}
+@keyframes ring{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--pink-glow) 70%,transparent)}80%,100%{box-shadow:0 0 0 18px transparent}}
+@media (prefers-reduced-motion:reduce){.pulse{animation:none;box-shadow:0 0 0 3px var(--pink-glow)}button.phone.front{transition:none}}
+.taphint{position:absolute;bottom:-50px;left:50%;transform:translateX(-50%);z-index:3;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font-size:15px;font-weight:600;color:#fff;background:linear-gradient(135deg,#731643 0%,#c4277a 55%,#da3591 100%);border:1px solid rgba(255,255,255,.22);padding:9px 18px 9px 14px;border-radius:999px;box-shadow:0 12px 30px -8px rgba(218,53,145,.75);animation:sbtNudge 2.2s ease-in-out infinite}
+.taphint svg{width:20px;height:20px;flex:none}
+@keyframes sbtNudge{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-5px)}}
+.booth{position:absolute;left:50%;bottom:5%;transform:translateX(-50%);width:56%;display:flex;flex-direction:column;align-items:center;gap:2px;pointer-events:none}
+.booth .spin{width:100%;height:auto;overflow:visible}
+.boothname{font-family:var(--display);font-weight:600;font-size:clamp(9px,1vw,12px);letter-spacing:.22em;text-transform:uppercase;color:#fff;text-shadow:0 1px 10px rgba(255,79,147,.8);white-space:nowrap}
+@media (prefers-reduced-motion:reduce){.taphint{animation:none}}
+
+.info{min-width:0}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.badge{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:4px 11px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.badge.mod{border-color:transparent;background:var(--pink);color:#fff}
+.feature .badge:not(.mod){background:#fff}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(26px,3.2vw,38px);line-height:1.1;letter-spacing:-.02em;margin:0 0 10px;text-wrap:balance}
+.info p.desc{color:var(--muted);font-weight:500;margin:0 0 18px;max-width:52ch}
+.cta{display:inline-flex;align-items:center;gap:10px;border:0;cursor:pointer;font-weight:600;font-size:16px;padding:13px 26px;border-radius:999px;color:#fff;background:var(--pink);box-shadow:0 10px 30px -10px var(--pink-glow)}
+.cta:hover{filter:brightness(1.08)}
+.cta svg{width:18px;height:18px}
+
+.chapters{margin:26px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.chapters>li{border-bottom:1px solid var(--line)}
+.ch{width:100%;display:grid;grid-template-columns:2.2em minmax(0,1fr) auto;align-items:center;gap:10px;background:none;border:0;text-align:left;padding:11px 4px;cursor:pointer;border-radius:10px}
+.ch:hover{background:var(--panel-2)}
+.ch .n{font-family:var(--display);font-weight:700;color:var(--pink);font-variant-numeric:tabular-nums}
+.ch .t{font-weight:600}
+.ch .go{color:var(--pink);font-size:14px;font-weight:600}
+.subs{display:flex;flex-wrap:wrap;gap:6px;padding:0 0 12px 2.6em}
+.subs button{border:1px solid #f6cfe0;background:var(--panel-2);border-radius:999px;padding:4px 11px;font-size:13px;font-weight:500;color:var(--fg);cursor:pointer}
+.subs button:hover{color:var(--fg);border-color:var(--faint)}
+.subs button span{color:var(--pink);font-weight:600;margin-right:5px;font-variant-numeric:tabular-nums}
+
+.help{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;margin-bottom:64px}
+.help>div{padding:22px 24px;border-radius:18px;border:1px solid var(--line);background:var(--bg-soft)}
+.help h3{font-family:var(--display);font-size:18px;margin:0 0 6px;letter-spacing:-.01em}
+.help p{margin:0;color:var(--muted);font-size:15px;font-weight:500}
+.avatar{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#773e45;color:#f3e3e5;border:1px solid rgba(255,255,255,.45);box-shadow:0 0 0 2px #c4277a;vertical-align:-6px;margin-inline:4px}
+.avatar svg{width:16px;height:16px}
+.mail{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:10px}
+.mail code{font-family:var(--body);font-weight:600;color:var(--fg);user-select:all;word-break:break-all}
+.mail button{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:4px 10px;font-size:13px;cursor:pointer;color:var(--muted)}
+footer{border-top:1px solid var(--line);color:var(--faint);font-size:13px;padding-block:22px}
+
+.viewer{position:fixed;inset:0;z-index:20;background:var(--bg);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.vbar{display:flex;align-items:center;gap:12px;padding:10px clamp(12px,3vw,24px);border-bottom:1px solid var(--line);background:var(--bg)}
+.back{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--line);background:var(--panel);border-radius:999px;padding:7px 14px;font-weight:600;font-size:14px;cursor:pointer}
+.vtitle{font-family:var(--display);font-weight:700;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1}
+.vtitle small{font-family:var(--body);font-weight:500;color:var(--muted);font-size:13px;margin-left:8px}
+.viewer iframe{flex:1;width:100%;border:0;background:#fff}
+@media (max-width:520px){.vtitle small{display:none}}
+body.locked{overflow:hidden}
+#root{padding-bottom:1px}
+html.embed,html.embed body{height:auto}
+</style>
+
+<div id="landing"><div id="root">
+
+  <main class="wrap" id="top">
+    <section class="hero">
+      <div class="hero-text">
+        <div class="eyebrow" data-i="eye">Tutorials</div>
+        <h1 data-i="h1" data-html>Learn the app <em>screen by screen.</em></h1>
+        <p class="lede" data-i="lede">Interactive guides built from the real app. Tap the screens just like on your iPad or iPhone and see what every option does.</p>
+      </div>
+      <div class="seg" role="group" aria-label="Language">
+        <button type="button" id="l-en" data-lang="en">English</button>
+        <button type="button" id="l-es" data-lang="es">Español</button>
+        <button type="button" id="l-fr" data-lang="fr">Français</button>
+      </div>
+    </section>
+
+    <section class="feature" aria-labelledby="g360">
+      <div class="stage">
+        <div class="phone back" aria-hidden="true"><img src="assets/cover-events.jpg" alt=""></div>
+        <div class="phone back2" aria-hidden="true"><img src="assets/cover-speed.jpg" alt=""></div>
+        <button type="button" class="phone front" id="cover" aria-label="Open the 360 Photo Booth Guide">
+          <img src="assets/cover-start.jpg" alt="Selfie Booth AI start screen with the Tap to Start button">
+          <span class="pulse"></span>
+          <span class="booth" aria-hidden="true">
+            <svg viewBox="0 0 200 120" class="spin"><defs><radialGradient id="sbtGlow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+              <ellipse cx="100" cy="98" rx="92" ry="20" fill="url(#sbtGlow)"/>
+              <g id="sbtBack"></g>
+              <ellipse cx="100" cy="92" rx="70" ry="17" fill="#2a0f22" fill-opacity=".55" stroke="#fff" stroke-opacity=".85" stroke-width="1.6"/>
+              <ellipse cx="100" cy="92" rx="52" ry="12" fill="none" stroke="#ff8fbf" stroke-opacity=".7" stroke-width="1"/>
+              <ellipse cx="100" cy="92" rx="7" ry="2.6" fill="#fff"/>
+              <g id="sbtFront"></g>
+            </svg>
+            <span class="boothname">360 Photo Booth App</span>
+          </span>
+        </button>
+        <span class="taphint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10m0-.5V8.5a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1-6 6h-1.2a6 6 0 0 1-4.8-2.4L3.8 15a1.6 1.6 0 0 1 2.4-2.1L9 15.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i="hint">Tap the screen to start the guide</span></span>
+      </div>
+
+      <div class="info">
+        <div class="badges"><span class="badge mod">360 Photo Booth</span><span class="badge" data-i="b2">Operator guide</span><span class="badge">EN · ES</span></div>
+        <h2 id="g360" data-i="h2">360 Photo Booth Guide</h2>
+        <p class="desc" data-i="desc">From creating your first event to sharing videos and closing it. Every step uses real screens from Selfie Booth AI, with the same help text you see when you tap ? in the app.</p>
+        <button type="button" class="cta" id="open"><span data-i="cta">Open the guide</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <ol class="chapters" id="chapters"></ol>
+      </div>
+    </section>
+
+    <section class="help">
+      <div>
+        <h3 data-i="hh1">From inside the app</h3>
+        <p data-i="hp1" data-html>Tap your profile icon <span class="avatar"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="3.6" fill="currentColor"/><path d="M5.5 19.2a6.8 6.8 0 0 1 13 0" fill="currentColor"/></svg></span> at the top right of the home screen, then <b>Help &amp; Support</b>. Every card in the event setup also has its own <b>?</b> with a quick explanation.</p>
+      </div>
+      <div>
+        <h3 data-i="hh2">Still need help?</h3>
+        <p data-i="hp2">Write to our support team. Include your app version and a screenshot if you can.</p>
+        <div class="mail"><code id="mail">support@selfieboothapp.com</code><button type="button" id="copy" data-i="copy">Copy</button></div>
+      </div>
+    </section>
+  </main>
+</div>
+</div>
+
+<div class="viewer" id="viewer" hidden>
+  <div class="vbar">
+    <button type="button" class="back" id="close"><span aria-hidden="true">←</span><span data-i="back">Tutorials</span></button>
+    <div class="vtitle">360 Photo Booth Guide<small>Selfie Booth AI</small></div>
+    <div class="seg" role="group" aria-label="Language">
+      <button type="button" id="v-en" data-lang="en">EN</button>
+      <button type="button" id="v-es" data-lang="es">ES</button>
+      <button type="button" id="v-fr" data-lang="fr">FR</button>
+    </div>
+  </div>
+  <iframe id="frame" title="360 Photo Booth Guide"></iframe>
+</div>
+
+<script>
+const EMBED=window.parent!==window;
+const GUIDE="360/";
+const CH=[
+ {id:"create-event",k:"1",en:"Create Event",es:"Crear evento",fr:"Créer un événement"},
+ {id:"select-features",k:"2",en:"Select Features",es:"Seleccionar funciones",fr:"Sélectionner les fonctions",subs:[
+  ["screens","2.1","Screens & Branding","Pantallas y branding","Écrans et branding"],["motion","2.2","Motion & Countdown","Movimiento y cuenta regresiva","Mouvement et compte à rebours"],
+  ["camera","2.3","Camera Source","Fuente de cámara","Source caméra"],["orientation","2.4","Orientation & Quality","Orientación y calidad","Orientation et qualité"],
+  ["speed","2.5","Speed / Ramp","Speed / Ramp","Speed / Ramp"],["overlays","2.6","Overlays","Overlays","Overlays"],["audio","2.7","Audio","Audio","Audio"],
+  ["sharing","2.8","Sharing","Compartir","Partage"],["gallery","2.9","Gallery Settings & Sync Recovery","Ajustes de galería y recuperación de sincronización","Réglages de la galerie et récupération de synchronisation"],
+  ["sharestation","2.10","Share Station","Share Station","Share Station"],["datacapture","2.11","Data Capture","Captura de datos","Collecte de données"]]},
+ {id:"review",k:"3",en:"Review",es:"Revisión",fr:"Vérification"},
+ {id:"launch",k:"4",en:"Launch Event",es:"Lanzar evento",fr:"Lancer l'événement"},
+ {id:"eventgallery",k:"5",en:"Event Gallery",es:"Galería del evento",fr:"Galerie de l'événement"},
+ {id:"quick",k:"6",en:"Quick access",es:"Accesos rápidos",fr:"Accès rapides"}
+];
+const T={es:{rib1:"Propuesta de diseño",rib2:"El encabezado y el pie vienen de tu sitio actual. Solo la sección del centro es nueva.",
+ nf:"Funciones",np:"Precios",nt:"Tutoriales",nc:"Contacto",ndl:"Descargar app",eye:"Tutoriales",
+ h1:"Aprende la app <em>pantalla por pantalla.</em>",lede:"Guías interactivas hechas con la app real. Toca las pantallas como en tu iPad o iPhone y ve qué hace cada opción.",
+ hint:"Toca la pantalla para iniciar la guía",b2:"Guía del operador",h2:"Guía 360 Photo Booth",
+ desc:"Desde crear tu primer evento hasta compartir los videos y cerrarlo. Cada paso usa pantallas reales de Selfie Booth AI, con el mismo texto de ayuda que ves al tocar ? en la app.",
+ s1:"capítulos",s2:"temas",s3:"pantallas reales",cta:"Abrir la guía",hh1:"Desde la app",
+ hp1:"Toca tu ícono de perfil <span class=\"avatar\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"9\" r=\"3.6\" fill=\"currentColor\"/><path d=\"M5.5 19.2a6.8 6.8 0 0 1 13 0\" fill=\"currentColor\"/></svg></span> arriba a la derecha de la pantalla de inicio y luego <b>Help &amp; Support</b>. Cada tarjeta de la configuración del evento también tiene su propio <b>?</b> con una explicación rápida.",
+ hh2:"¿Necesitas más ayuda?",hp2:"Escribe a nuestro equipo de soporte. Incluye la versión de la app y una captura si puedes.",copy:"Copiar",copied:"Copiado",back:"Tutoriales",open:"Abrir"},
+fr:{rib1:"Proposition de design",rib2:"L'en-tête et le pied de page viennent de votre site actuel. Seule la section centrale est nouvelle.",
+ nf:"Fonctionnalités",np:"Tarifs",nt:"Tutoriels",nc:"Contact",ndl:"Télécharger l'app",eye:"Tutoriels",
+ h1:"Apprenez l'app <em>écran par écran.</em>",lede:"Des guides interactifs créés à partir de la vraie app. Touchez les écrans comme sur votre iPad ou iPhone et découvrez ce que fait chaque option.",
+ hint:"Touchez l'écran pour lancer le guide",b2:"Guide de l'opérateur",h2:"Guide 360 Photo Booth",
+ desc:"De la création de votre premier événement jusqu'au partage des vidéos et à sa clôture. Chaque étape utilise de vrais écrans de Selfie Booth AI, avec le même texte d'aide que lorsque vous touchez ? dans l'app.",
+ cta:"Ouvrir le guide",hh1:"Depuis l'app",
+ hp1:"Touchez votre icône de profil <span class=\"avatar\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"9\" r=\"3.6\" fill=\"currentColor\"/><path d=\"M5.5 19.2a6.8 6.8 0 0 1 13 0\" fill=\"currentColor\"/></svg></span> en haut à droite de l'écran d'accueil, puis <b>Help &amp; Support</b>. Chaque carte de la configuration de l'événement a aussi son propre <b>?</b> avec une explication rapide.",
+ hh2:"Besoin d'aide ?",hp2:"Écrivez à notre équipe d'assistance. Indiquez la version de l'app et joignez une capture d'écran si possible.",copy:"Copier",copied:"Copié",back:"Tutoriels",open:"Ouvrir"}};
+const EN={};document.querySelectorAll("[data-i]").forEach(el=>EN[el.dataset.i]=el.dataset.html!==undefined?el.innerHTML:el.textContent);
+EN.copied="Copied";EN.open="Open";
+let lang="en";
+try{const l=localStorage.getItem("sbai-lang");if(["en","es","fr"].includes(l))lang=l}catch(e){}
+try{if(!localStorage.getItem("sbai-lang")){const n=(navigator.language||"").slice(0,2).toLowerCase();if(n==="es"||n==="fr")lang=n}}catch(e){}
+const $=id=>document.getElementById(id);
+function tx(k){return T[lang]?(T[lang][k]??EN[k]):EN[k]}
+function renderChapters(){
+  $("chapters").innerHTML=CH.map(c=>`<li><button type="button" class="ch" data-sec="${c.id}"><span class="n">${c.k}</span><span class="t">${c[lang]}</span><span class="go">${tx("open")} →</span></button>${c.subs?`<div class="subs">${c.subs.map(s=>`<button type="button" data-sec="${s[0]}"><span>${s[1]}</span>${s[{en:2,es:3,fr:4}[lang]]}</button>`).join("")}</div>`:""}</li>`).join("");
+}
+function render(){
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-i]").forEach(el=>{const v=tx(el.dataset.i);if(el.dataset.html!==undefined)el.innerHTML=v;else el.textContent=v});
+  document.querySelectorAll(".seg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===lang));
+  $("cover").setAttribute("aria-label",({es:"Abrir la Guía 360 Photo Booth",fr:"Ouvrir le Guide 360 Photo Booth"})[lang]||"Open the 360 Photo Booth Guide");
+  document.querySelector(".vtitle").firstChild.nodeValue=({es:"Guía 360 Photo Booth",fr:"Guide 360 Photo Booth"})[lang]||"360 Photo Booth Guide";
+  renderChapters();
+}
+function setLang(l,fromGuide){lang=l;try{localStorage.setItem("sbai-lang",l)}catch(e){}render();
+  if(!fromGuide&&!$("viewer").hidden){try{$("frame").contentWindow.postMessage({sbai:"lang",lang:l},"*")}catch(e){}}}
+document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+window.addEventListener("message",e=>{const d=e.data||{};if(d.sbai==="lang"&&["en","es","fr"].includes(d.lang)&&d.lang!==lang)setLang(d.lang,true)});
+
+function openGuide(sec){
+  if(EMBED){try{parent.postMessage({sbt:"open",sec:sec||"",lang},"*")}catch(e){}return}
+  const f=$("frame"),want=GUIDE+(sec?"#"+sec:"");
+  if(!f.getAttribute("src")){f.setAttribute("src",want)}
+  else{try{f.contentWindow.postMessage({sbai:"lang",lang},"*");if(sec)f.contentWindow.postMessage({sbai:"go",id:sec},"*")}catch(e){f.setAttribute("src",want)}}
+  $("viewer").hidden=false;document.body.classList.add("locked");
+  try{history.replaceState(null,"","#360"+(sec?"."+sec:""))}catch(e){}
+  $("close").focus();
+}
+function closeGuide(){$("viewer").hidden=true;document.body.classList.remove("locked");try{history.replaceState(null,"","#tutorials")}catch(e){}$("cover").focus()}
+$("frame").addEventListener("load",()=>{try{$("frame").contentWindow.postMessage({sbai:"lang",lang},"*")}catch(e){}});
+$("cover").addEventListener("click",()=>openGuide());
+$("open").addEventListener("click",()=>openGuide());
+$("chapters").addEventListener("click",e=>{const b=e.target.closest("[data-sec]");if(b)openGuide(b.dataset.sec)});
+$("close").addEventListener("click",closeGuide);
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("viewer").hidden)closeGuide()});
+$("copy").addEventListener("click",()=>{const done=()=>{$("copy").textContent=tx("copied");setTimeout(()=>$("copy").textContent=tx("copy"),1600)};
+  try{navigator.clipboard.writeText($("mail").textContent).then(done,()=>{selectMail()})}catch(e){selectMail()}});
+function selectMail(){const r=document.createRange();r.selectNodeContents($("mail"));const s=getSelection();s.removeAllRanges();s.addRange(r)}
+render();
+const h=location.hash.slice(1);if(h.startsWith("360")){const s=h.split(".")[1];openGuide(s&&CH.some(c=>c.id===s||(c.subs||[]).some(x=>x[0]===s))?s:"")}
+
+/* 360 booth spinner on the cover: an arm sweeps the phone around the platform */
+(function(){const NS="http://www.w3.org/2000/svg",B=document.getElementById("sbtBack"),F=document.getElementById("sbtFront");if(!B||!F)return;
+ const cx=100,cy=92,R=70,r=17;
+ function el(n,a){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e}
+ const arm=el("g",{});const base=el("line",{stroke:"#fff","stroke-width":"2.4","stroke-linecap":"round"});const post=el("line",{stroke:"#fff","stroke-width":"2.4","stroke-linecap":"round"});
+ const ph=el("rect",{width:"12",height:"21",rx:"2.6",fill:"#140a1c",stroke:"#fff","stroke-width":"1.6"});const lens=el("circle",{r:"1.6",fill:"#ff4f93"});
+ arm.append(base,post,ph,lens);
+ function draw(a){const x=cx+R*Math.cos(a),y=cy+r*Math.sin(a),front=Math.sin(a)>0,h=56+8*Math.sin(a),s=.85+.25*(Math.sin(a)+1)/2;
+  base.setAttribute("x1",cx);base.setAttribute("y1",cy);base.setAttribute("x2",x);base.setAttribute("y2",y);
+  post.setAttribute("x1",x);post.setAttribute("y1",y);post.setAttribute("x2",x);post.setAttribute("y2",y-h);
+  ph.setAttribute("transform",`translate(${x} ${y-h}) scale(${s}) translate(-6 -21)`);lens.setAttribute("cx",x);lens.setAttribute("cy",y-h-14*s);
+  arm.style.opacity=front?1:.55;(front?F:B).appendChild(arm)}
+ const still=matchMedia("(prefers-reduced-motion: reduce)").matches;let a=.6;draw(a);
+ if(!still){let last=performance.now();(function tick(n){a+=(n-last)/1000*1.9;last=n;draw(a);requestAnimationFrame(tick)})(last)}
+})();
+
+/* Embedded in selfieboothapp.com/tutorials: report height so the host iframe fits the content */
+if(EMBED){document.documentElement.classList.add("embed");const root=document.getElementById("root");
+ const send=()=>{try{parent.postMessage({sbt:"h",h:Math.ceil(root.getBoundingClientRect().height)+40},"*")}catch(e){}};
+ try{new ResizeObserver(send).observe(root)}catch(e){}addEventListener("load",send);send();}
+</script>
+
+</html>

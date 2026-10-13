@@ -120,6 +120,9 @@ footer{border-top:1px solid var(--line);color:var(--faint);font-size:13px;paddin
 .viewer iframe{flex:1;width:100%;border:0;background:#fff}
 @media (max-width:520px){.vtitle small{display:none}}
 body.locked{overflow:hidden}
+.seg.mini{padding:2px;background:#fdeef4;border:1px solid #f6cfe0;align-self:center}
+.seg.mini button{padding:3px 10px;font-size:12px;font-weight:600;color:var(--pink)}
+.seg.mini button[aria-pressed="true"]{background:var(--pink);color:#fff}
 #root{padding-bottom:1px}
 html.embed,html.embed body{height:auto}
 </style>
@@ -163,7 +166,7 @@ html.embed,html.embed body{height:auto}
       </div>
 
       <div class="info">
-        <div class="badges"><span class="badge mod">360 Photo Booth</span><span class="badge" data-i="b2">Operator guide</span><span class="badge">EN · ES · FR</span></div>
+        <div class="badges"><span class="badge mod">360 Photo Booth</span><span class="badge" data-i="b2">Operator guide</span><span class="seg mini" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="es">ES</button><button type="button" data-lang="fr">FR</button></span></div>
         <h2 id="g360" data-i="h2">360 Photo Booth Guide</h2>
         <p class="desc" data-i="desc">From creating your first event to sharing videos and closing it. Every step uses real screens from Selfie Booth AI, with the same help text you see when you tap ? in the app.</p>
         <button type="button" class="cta" id="open"><span data-i="cta">Open the guide</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>

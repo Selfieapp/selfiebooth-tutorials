@@ -229,6 +229,7 @@ a.soonref{color:#fff;text-decoration:underline}
 .sssteps{margin:0;padding-left:22px;display:grid;gap:6px;color:var(--muted);max-width:64ch}
 .sssteps b{color:var(--ink)}
 @media (max-width:520px){.devflow{grid-template-columns:minmax(0,1fr)}.flowarrow svg{transform:rotate(90deg)}}
+html.embedded .lang{display:none}
 </style>
 
 <div class="wrap">
@@ -749,6 +750,7 @@ const FRD={"UI": {"eyebrow": "Guide de l'opérateur · module 360", "h1": "Guide
  SCREENS.forEach((S,i)=>{const f=FRD.SCREENS[i];S.fr={t:f.t,s:f.s,hero:f.hero||S.en.hero,tip:f.tip||S.en.tip};S.pins.forEach((p,j)=>p.fr=f.pins[j]||p.en)});
  OVCHIPS.forEach((x,i)=>x.fr=FRD.OVCHIPS[i]||x.en);CHIPS.forEach((x,i)=>x.fr=FRD.CHIPS[i]||x.en);TABS.forEach((x,i)=>x.fr=FRD.TABS[i]||x.en)})();
 const LANGS=["en","es","fr"];
+if(window.parent!==window)document.documentElement.classList.add("embedded");
 let stripScroll={},bsel={tabs:0,cam:1,ovl:2},bscroll={tabs:0,cam:0,ovl:9999};
 let lang="en",cur=0,sel=-1;
 try{const l=localStorage.getItem("sbai-lang");if(LANGS.includes(l))lang=l}catch(e){}

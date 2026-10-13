@@ -32,6 +32,18 @@ This repo holds only tutorial content. It contains no app code, keys or data.
 
 Section ids: `create-event`, `select-features`, `screens`, `motion`, `camera`, `orientation`, `speed`, `overlays`, `audio`, `sharing`, `gallery`, `sharestation`, `datacapture`, `review`, `launch`, `eventgallery`, `quick`.
 
+## Source files
+
+Edit these, never the published files directly, then run `python3 src/build.py`:
+
+| Source | Builds |
+|---|---|
+| `src/guide/template.html` (texts EN/ES/FR, pins, layout) + `src/guide/imgs.js` (screenshots) | `360/index.html` |
+| `src/page/page.tpl.html` + `src/page/covers.json` | `index.html` |
+| `src/page/embed.js`, `src/page/viewer.html` | `assets/embed.js`, `viewer.html` |
+
+`page.tpl.html` is also the design preview: it includes a stand-in site header and footer that the build removes.
+
 ## Updating
 
 Changes are made by editing these files and pushing to `main`. GitHub Pages republishes in about 1–2 minutes. Browsers may keep the old version for up to 10 minutes.

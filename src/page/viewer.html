@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>360 Photo Booth Guide · Selfie Booth AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap">
+<style>
+:root{--bg:#ffffff;--panel:#ffffff;--panel-2:#f6f2f6;--line:#e6e6e6;--fg:#0d0c10;--muted:#26222b;
+  --font:"Poppins",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid #e31356;outline-offset:3px;border-radius:8px}
+.viewer{position:fixed;inset:0;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.vbar{display:flex;align-items:center;gap:12px;padding:10px clamp(12px,3vw,24px);border-bottom:1px solid var(--line);background:var(--bg)}
+.back{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--line);background:var(--panel);border-radius:999px;padding:7px 14px;font-weight:600;font-size:14px;cursor:pointer}
+.vtitle{font-weight:700;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1}
+.vtitle small{font-weight:500;color:var(--muted);font-size:13px;margin-left:8px}
+.seg{display:inline-flex;padding:4px;border-radius:999px;background:var(--panel-2);border:1px solid var(--line)}
+.seg button{border:0;background:none;padding:6px 12px;border-radius:999px;font-weight:600;font-size:13px;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+iframe{flex:1;width:100%;border:0;background:#fff}
+@media (max-width:520px){.vtitle small{display:none}}
+</style>
+</head>
+<body>
+<div class="viewer">
+  <div class="vbar">
+    <button type="button" class="back" id="close"><span aria-hidden="true">←</span><span id="backl">Tutorials</span></button>
+    <div class="vtitle"><span id="title">360 Photo Booth Guide</span><small>Selfie Booth AI</small></div>
+    <div class="seg" role="group" aria-label="Language">
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="es">ES</button>
+      <button type="button" data-lang="fr">FR</button>
+    </div>
+  </div>
+  <iframe id="frame" title="360 Photo Booth Guide"></iframe>
+</div>
+<script>
+const LANGS=["en","es","fr"];
+const L={en:["Tutorials","360 Photo Booth Guide"],es:["Tutoriales","Guía 360 Photo Booth"],fr:["Tutoriels","Guide 360 Photo Booth"]};
+const EMBED=window.parent!==window;
+let lang=null;
+try{lang=new URLSearchParams(location.search).get("lang")}catch(e){}
+if(!LANGS.includes(lang)){try{lang=localStorage.getItem("sbai-lang")}catch(e){}}
+if(!LANGS.includes(lang)){const n=(navigator.language||"").slice(0,2).toLowerCase();lang=LANGS.includes(n)?n:"en"}
+const frame=document.getElementById("frame");
+const sec=location.hash.slice(1);
+function paint(){document.documentElement.lang=lang;document.getElementById("backl").textContent=L[lang][0];document.getElementById("title").textContent=L[lang][1];
+  document.querySelectorAll(".seg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===lang))}
+function setLang(l,fromGuide){if(!LANGS.includes(l))return;lang=l;try{localStorage.setItem("sbai-lang",l)}catch(e){}paint();
+  if(!fromGuide){try{frame.contentWindow.postMessage({sbai:"lang",lang:l},"*")}catch(e){}}
+  if(EMBED){try{parent.postMessage({sbai:"lang",lang:l},"*")}catch(e){}}}
+document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+window.addEventListener("message",e=>{if(e.source!==frame.contentWindow)return;const d=e.data||{};if(d.sbai==="lang"&&d.lang!==lang)setLang(d.lang,true)});
+function close(){if(EMBED){try{parent.postMessage({sbt:"close"},"*")}catch(e){}}else location.href="./"}
+document.getElementById("close").addEventListener("click",close);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
+frame.src="360/?lang="+lang+(sec?"#"+sec:"");
+paint();
+</script>
+</body>
+</html>

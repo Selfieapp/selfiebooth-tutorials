@@ -7,7 +7,7 @@
 (function () {
   var me = document.currentScript;
   var BASE = (me && me.src ? me.src : "").replace(/\/assets\/embed\.js(\?.*)?$/, "") || "https://tutorials.selfieboothapp.com";
-  var ORIGIN = new URL(BASE + "/").origin;
+  var ORIGINS = [new URL(BASE + "/").origin, "https://tutorials.selfieboothapp.com", "https://selfieapp.github.io"];
 
   var host = document.getElementById("sbt-tutorials");
   if (!host) { host = document.createElement("div"); host.id = "sbt-tutorials"; me.parentNode.insertBefore(host, me); }
@@ -48,14 +48,14 @@
   }
 
   window.addEventListener("message", function (e) {
-    if (e.origin !== ORIGIN) return;
+    if (ORIGINS.indexOf(e.origin) < 0) return;
     var d = e.data || {};
     if (d.sbt === "h" && d.h > 0) section.style.height = d.h + "px";
     else if (d.sbt === "open") open(d.sec || "", d.lang);
     else if (d.sbt === "close") close();
     else if (d.sbai === "lang") {
       lang = d.lang;
-      try { if (e.source !== section.contentWindow) section.contentWindow.postMessage({ sbai: "lang", lang: d.lang }, ORIGIN); } catch (x) {}
+      try { if (e.source !== section.contentWindow) section.contentWindow.postMessage({ sbai: "lang", lang: d.lang }, "*"); } catch (x) {}
     }
   });
 

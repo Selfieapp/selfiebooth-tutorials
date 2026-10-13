@@ -229,7 +229,9 @@ a.soonref{color:#fff;text-decoration:underline}
 .sssteps{margin:0;padding-left:22px;display:grid;gap:6px;color:var(--muted);max-width:64ch}
 .sssteps b{color:var(--ink)}
 @media (max-width:520px){.devflow{grid-template-columns:minmax(0,1fr)}.flowarrow svg{transform:rotate(90deg)}}
-html.embedded .lang{display:none}
+html.embedded .lang{background:var(--accent-soft);border-color:transparent;padding:2px}
+html.embedded .lang button{color:var(--accent);font-size:12px;padding:4px 11px}
+html.embedded .lang button[aria-pressed="true"]{background:var(--accent);color:#fff}
 </style>
 
 <div class="wrap">

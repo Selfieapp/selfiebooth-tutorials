@@ -116,6 +116,9 @@ body.locked{overflow:hidden}
 .seg.mini{padding:2px;background:#fdeef4;border:1px solid #f6cfe0;align-self:center}
 .seg.mini button{padding:3px 10px;font-size:12px;font-weight:600;color:var(--pink)}
 .seg.mini button[aria-pressed="true"]{background:var(--pink);color:#fff}
+.ls{display:none}
+@media (max-width:600px){.hero .seg .lf{display:none}.hero .seg .ls{display:inline}}
+@media (max-width:440px){.vtitle{visibility:hidden}}
 </style>
 
 <div id="landing">
@@ -138,10 +141,11 @@ body.locked{overflow:hidden}
         <p class="lede" data-i="lede">Interactive guides built from the real app. Tap the screens just like on your iPad or iPhone and see what every option does.</p>
       </div>
       <div class="seg" role="group" aria-label="Language">
-        <button type="button" id="l-en" data-lang="en">English</button>
-        <button type="button" id="l-es" data-lang="es">Español</button>
-        <button type="button" id="l-fr" data-lang="fr">Français</button>
-        <button type="button" id="l-it" data-lang="it">Italiano</button>
+        <button type="button" id="l-en" data-lang="en"><span class="lf">English</span><span class="ls">EN</span></button>
+        <button type="button" id="l-es" data-lang="es"><span class="lf">Español</span><span class="ls">ES</span></button>
+        <button type="button" id="l-fr" data-lang="fr"><span class="lf">Français</span><span class="ls">FR</span></button>
+        <button type="button" id="l-it" data-lang="it"><span class="lf">Italiano</span><span class="ls">IT</span></button>
+        <button type="button" id="l-pt" data-lang="pt"><span class="lf">Português</span><span class="ls">PT</span></button>
       </div>
     </section>
 
@@ -168,7 +172,7 @@ body.locked{overflow:hidden}
       </div>
 
       <div class="info">
-        <div class="badges"><span class="badge mod">360 Photo Booth</span><span class="badge" data-i="b2">Operator guide</span><span class="seg mini" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="es">ES</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="it">IT</button></span></div>
+        <div class="badges"><span class="badge mod">360 Photo Booth</span><span class="badge" data-i="b2">Operator guide</span><span class="seg mini" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="es">ES</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="it">IT</button><button type="button" data-lang="pt">PT</button></span></div>
         <h2 id="g360" data-i="h2">360 Photo Booth Guide</h2>
         <p class="desc" data-i="desc">From creating your first event to sharing videos and closing it. Every step uses real screens from Selfie Booth AI, with the same help text you see when you tap ? in the app.</p>
         <button type="button" class="cta" id="open"><span data-i="cta">Open the guide</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
@@ -200,6 +204,7 @@ body.locked{overflow:hidden}
       <button type="button" id="v-es" data-lang="es">ES</button>
       <button type="button" id="v-fr" data-lang="fr">FR</button>
       <button type="button" id="v-it" data-lang="it">IT</button>
+      <button type="button" id="v-pt" data-lang="pt">PT</button>
     </div>
   </div>
   <iframe id="frame" title="360 Photo Booth Guide"></iframe>
@@ -208,17 +213,17 @@ body.locked{overflow:hidden}
 <script>
 const GUIDE="360/index.html";
 const CH=[
- {id:"create-event",k:"1",en:"Create Event",es:"Crear evento",fr:"Créer un événement",it:"Crea evento"},
- {id:"select-features",k:"2",en:"Select Features",es:"Seleccionar funciones",fr:"Sélectionner les fonctions",it:"Seleziona funzioni",subs:[
-  ["screens","2.1","Screens & Branding","Pantallas y branding","Écrans et branding","Schermate e branding"],["motion","2.2","Motion & Countdown","Movimiento y cuenta regresiva","Mouvement et compte à rebours","Movimento e conto alla rovescia"],
-  ["camera","2.3","Camera Source","Fuente de cámara","Source caméra","Sorgente fotocamera"],["orientation","2.4","Orientation & Quality","Orientación y calidad","Orientation et qualité","Orientamento e qualità"],
-  ["speed","2.5","Speed / Ramp","Speed / Ramp","Speed / Ramp","Speed / Ramp"],["overlays","2.6","Overlays","Overlays","Overlays","Overlays"],["audio","2.7","Audio","Audio","Audio","Audio"],
-  ["sharing","2.8","Sharing","Compartir","Partage","Condivisione"],["gallery","2.9","Gallery Settings & Sync Recovery","Ajustes de galería y recuperación de sincronización","Réglages de la galerie et récupération de synchronisation","Impostazioni galleria e recupero della sincronizzazione"],
-  ["sharestation","2.10","Share Station","Share Station","Share Station","Share Station"],["datacapture","2.11","Data Capture","Captura de datos","Collecte de données","Raccolta dati"]]},
- {id:"review",k:"3",en:"Review",es:"Revisión",fr:"Vérification",it:"Revisione"},
- {id:"launch",k:"4",en:"Launch Event",es:"Lanzar evento",fr:"Lancer l'événement",it:"Avvia evento"},
- {id:"eventgallery",k:"5",en:"Event Gallery",es:"Galería del evento",fr:"Galerie de l'événement",it:"Galleria dell'evento"},
- {id:"quick",k:"6",en:"Quick access",es:"Accesos rápidos",fr:"Accès rapides",it:"Accessi rapidi"}
+ {id:"create-event",k:"1",en:"Create Event",es:"Crear evento",fr:"Créer un événement",it:"Crea evento",pt:"Criar evento"},
+ {id:"select-features",k:"2",en:"Select Features",es:"Seleccionar funciones",fr:"Sélectionner les fonctions",it:"Seleziona funzioni",pt:"Selecionar recursos",subs:[
+  ["screens","2.1","Screens & Branding","Pantallas y branding","Écrans et branding","Schermate e branding","Telas e branding"],["motion","2.2","Motion & Countdown","Movimiento y cuenta regresiva","Mouvement et compte à rebours","Movimento e conto alla rovescia","Movimento e contagem regressiva"],
+  ["camera","2.3","Camera Source","Fuente de cámara","Source caméra","Sorgente fotocamera","Fonte da câmera"],["orientation","2.4","Orientation & Quality","Orientación y calidad","Orientation et qualité","Orientamento e qualità","Orientação e qualidade"],
+  ["speed","2.5","Speed / Ramp","Speed / Ramp","Speed / Ramp","Speed / Ramp","Speed / Ramp"],["overlays","2.6","Overlays","Overlays","Overlays","Overlays","Overlays"],["audio","2.7","Audio","Audio","Audio","Audio","Áudio"],
+  ["sharing","2.8","Sharing","Compartir","Partage","Condivisione","Compartilhamento"],["gallery","2.9","Gallery Settings & Sync Recovery","Ajustes de galería y recuperación de sincronización","Réglages de la galerie et récupération de synchronisation","Impostazioni galleria e recupero della sincronizzazione","Configurações da galeria e recuperação da sincronização"],
+  ["sharestation","2.10","Share Station","Share Station","Share Station","Share Station","Share Station"],["datacapture","2.11","Data Capture","Captura de datos","Collecte de données","Raccolta dati","Coleta de dados"]]},
+ {id:"review",k:"3",en:"Review",es:"Revisión",fr:"Vérification",it:"Revisione",pt:"Revisão"},
+ {id:"launch",k:"4",en:"Launch Event",es:"Lanzar evento",fr:"Lancer l'événement",it:"Avvia evento",pt:"Iniciar evento"},
+ {id:"eventgallery",k:"5",en:"Event Gallery",es:"Galería del evento",fr:"Galerie de l'événement",it:"Galleria dell'evento",pt:"Galeria do evento"},
+ {id:"quick",k:"6",en:"Quick access",es:"Accesos rápidos",fr:"Accès rapides",it:"Accessi rapidi",pt:"Acessos rápidos"}
 ];
 const T={es:{rib1:"Propuesta de diseño",rib2:"El encabezado y el pie vienen de tu sitio actual. Solo la sección del centro es nueva.",
  nf:"Funciones",np:"Precios",nt:"Tutoriales",nc:"Contacto",ndl:"Descargar app",eye:"Tutoriales",
@@ -243,29 +248,37 @@ it:{rib1:"Proposta di design",rib2:"L'intestazione e il piè di pagina vengono d
  desc:"Dalla creazione del tuo primo evento fino alla condivisione dei video e alla sua chiusura. Ogni passo usa schermate reali di Selfie Booth AI, con lo stesso testo di aiuto che vedi quando tocchi ? nell'app.",
  cta:"Apri la guida",hh1:"Dall'app",
  hp1:"Tocca la tua icona del profilo <span class=\"avatar\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"9\" r=\"3.6\" fill=\"currentColor\"/><path d=\"M5.5 19.2a6.8 6.8 0 0 1 13 0\" fill=\"currentColor\"/></svg></span> in alto a destra nella schermata iniziale, poi <b>Help &amp; Support</b>. Ogni scheda della configurazione dell'evento ha anche il suo <b>?</b> con una spiegazione rapida.",
- hh2:"Ti serve aiuto?",hp2:"Scrivi al nostro team di assistenza. Indica la versione dell'app e allega uno screenshot se puoi.",copy:"Copia",copied:"Copiato",back:"Tutorial",open:"Apri"}};
+ hh2:"Ti serve aiuto?",hp2:"Scrivi al nostro team di assistenza. Indica la versione dell'app e allega uno screenshot se puoi.",copy:"Copia",copied:"Copiato",back:"Tutorial",open:"Apri"},
+pt:{rib1:"Proposta de design",rib2:"O cabeçalho e o rodapé vêm do seu site atual. Só a seção do meio é nova.",
+ nf:"Recursos",np:"Preços",nt:"Tutoriais",nc:"Contato",ndl:"Baixar o app",eye:"Tutoriais",
+ h1:"Aprenda o app <em>tela por tela.</em>",lede:"Guias interativos feitos com o app real. Toque nas telas como no seu iPad ou iPhone e veja o que cada opção faz.",
+ hint:"Toque na tela para iniciar o guia",b2:"Guia do operador",h2:"Guia 360 Photo Booth",
+ desc:"Da criação do seu primeiro evento até o compartilhamento dos vídeos e o encerramento. Cada passo usa telas reais do Selfie Booth AI, com o mesmo texto de ajuda que você vê ao tocar em ? no app.",
+ cta:"Abrir o guia",hh1:"Pelo app",
+ hp1:"Toque no seu ícone de perfil <span class=\"avatar\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"9\" r=\"3.6\" fill=\"currentColor\"/><path d=\"M5.5 19.2a6.8 6.8 0 0 1 13 0\" fill=\"currentColor\"/></svg></span> no canto superior direito da tela inicial e depois em <b>Help &amp; Support</b>. Cada cartão da configuração do evento também tem o seu próprio <b>?</b> com uma explicação rápida.",
+ hh2:"Precisa de mais ajuda?",hp2:"Escreva para a nossa equipe de suporte. Inclua a versão do app e uma captura de tela, se puder.",copy:"Copiar",copied:"Copiado",back:"Tutoriais",open:"Abrir"}};
 const EN={};document.querySelectorAll("[data-i]").forEach(el=>EN[el.dataset.i]=el.dataset.html!==undefined?el.innerHTML:el.textContent);
 EN.copied="Copied";EN.open="Open";
 let lang="en";
-try{const l=localStorage.getItem("sbai-lang");if(["en","es","fr","it"].includes(l))lang=l}catch(e){}
-try{if(!localStorage.getItem("sbai-lang")){const n=(navigator.language||"").slice(0,2).toLowerCase();if(n==="es"||n==="fr"||n==="it")lang=n}}catch(e){}
+try{const l=localStorage.getItem("sbai-lang");if(["en","es","fr","it","pt"].includes(l))lang=l}catch(e){}
+try{if(!localStorage.getItem("sbai-lang")){const n=(navigator.language||"").slice(0,2).toLowerCase();if(["es","fr","it","pt"].includes(n))lang=n}}catch(e){}
 const $=id=>document.getElementById(id);
 function tx(k){return T[lang]?(T[lang][k]??EN[k]):EN[k]}
 function renderChapters(){
-  $("chapters").innerHTML=CH.map(c=>`<li><button type="button" class="ch" data-sec="${c.id}"><span class="n">${c.k}</span><span class="t">${c[lang]}</span><span class="go">${tx("open")} →</span></button>${c.subs?`<div class="subs">${c.subs.map(s=>`<button type="button" data-sec="${s[0]}"><span>${s[1]}</span>${s[{en:2,es:3,fr:4,it:5}[lang]]}</button>`).join("")}</div>`:""}</li>`).join("");
+  $("chapters").innerHTML=CH.map(c=>`<li><button type="button" class="ch" data-sec="${c.id}"><span class="n">${c.k}</span><span class="t">${c[lang]}</span><span class="go">${tx("open")} →</span></button>${c.subs?`<div class="subs">${c.subs.map(s=>`<button type="button" data-sec="${s[0]}"><span>${s[1]}</span>${s[{en:2,es:3,fr:4,it:5,pt:6}[lang]]}</button>`).join("")}</div>`:""}</li>`).join("");
 }
 function render(){
   document.documentElement.lang=lang;
   document.querySelectorAll("[data-i]").forEach(el=>{const v=tx(el.dataset.i);if(el.dataset.html!==undefined)el.innerHTML=v;else el.textContent=v});
   document.querySelectorAll(".seg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===lang));
-  $("cover").setAttribute("aria-label",({es:"Abrir la Guía 360 Photo Booth",fr:"Ouvrir le Guide 360 Photo Booth",it:"Apri la Guida 360 Photo Booth"})[lang]||"Open the 360 Photo Booth Guide");
-  document.querySelector(".vtitle").firstChild.nodeValue=({es:"Guía 360 Photo Booth",fr:"Guide 360 Photo Booth",it:"Guida 360 Photo Booth"})[lang]||"360 Photo Booth Guide";
+  $("cover").setAttribute("aria-label",({es:"Abrir la Guía 360 Photo Booth",fr:"Ouvrir le Guide 360 Photo Booth",it:"Apri la Guida 360 Photo Booth",pt:"Abrir o Guia 360 Photo Booth"})[lang]||"Open the 360 Photo Booth Guide");
+  document.querySelector(".vtitle").firstChild.nodeValue=({es:"Guía 360 Photo Booth",fr:"Guide 360 Photo Booth",it:"Guida 360 Photo Booth",pt:"Guia 360 Photo Booth"})[lang]||"360 Photo Booth Guide";
   renderChapters();
 }
 function setLang(l,fromGuide){lang=l;try{localStorage.setItem("sbai-lang",l)}catch(e){}render();
   if(!fromGuide&&!$("viewer").hidden){try{$("frame").contentWindow.postMessage({sbai:"lang",lang:l},"*")}catch(e){}}}
 document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
-window.addEventListener("message",e=>{const d=e.data||{};if(d.sbai==="lang"&&["en","es","fr","it"].includes(d.lang)&&d.lang!==lang)setLang(d.lang,true)});
+window.addEventListener("message",e=>{const d=e.data||{};if(d.sbai==="lang"&&["en","es","fr","it","pt"].includes(d.lang)&&d.lang!==lang)setLang(d.lang,true)});
 
 function openGuide(sec){
   const f=$("frame"),want=GUIDE+(sec?"#"+sec:"");

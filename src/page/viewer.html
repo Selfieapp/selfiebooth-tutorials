@@ -25,6 +25,7 @@ button{font:inherit;color:inherit}
 .seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
 iframe{flex:1;width:100%;border:0;background:#fff}
 @media (max-width:520px){.vtitle small{display:none}}
+@media (max-width:440px){.vtitle{visibility:hidden}}
 </style>
 </head>
 <body>
@@ -37,13 +38,14 @@ iframe{flex:1;width:100%;border:0;background:#fff}
       <button type="button" data-lang="es">ES</button>
       <button type="button" data-lang="fr">FR</button>
       <button type="button" data-lang="it">IT</button>
+      <button type="button" data-lang="pt">PT</button>
     </div>
   </div>
   <iframe id="frame" title="360 Photo Booth Guide"></iframe>
 </div>
 <script>
-const LANGS=["en","es","fr","it"];
-const L={en:["Tutorials","360 Photo Booth Guide"],es:["Tutoriales","Guía 360 Photo Booth"],fr:["Tutoriels","Guide 360 Photo Booth"],it:["Tutorial","Guida 360 Photo Booth"]};
+const LANGS=["en","es","fr","it","pt"];
+const L={en:["Tutorials","360 Photo Booth Guide"],es:["Tutoriales","Guía 360 Photo Booth"],fr:["Tutoriels","Guide 360 Photo Booth"],it:["Tutorial","Guida 360 Photo Booth"],pt:["Tutoriais","Guia 360 Photo Booth"]};
 const EMBED=window.parent!==window;
 let lang=null;
 try{lang=new URLSearchParams(location.search).get("lang")}catch(e){}

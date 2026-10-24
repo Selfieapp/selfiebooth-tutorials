@@ -1,6 +1,6 @@
 # Selfie Booth AI · Tutorials
 
-Interactive tutorials for the Selfie Booth AI iOS app, shown at **selfieboothapp.com/tutorials**. Available in English, Spanish and French.
+Interactive tutorials for the Selfie Booth AI iOS app, shown at **selfieboothapp.com/tutorials**. Available in English, Spanish, French and Italian.
 
 This repo holds only tutorial content. It contains no app code, keys or data.
 
@@ -9,8 +9,8 @@ This repo holds only tutorial content. It contains no app code, keys or data.
 | Path | What it is |
 |---|---|
 | `index.html` | Tutorials section: app cover with the 360 spinner, chapter list, help |
-| `viewer.html` | Full-screen guide viewer (top bar with back and EN/ES/FR) used by the website embed |
-| `360/index.html` | 360 Photo Booth Guide: interactive, self-contained, EN/ES/FR |
+| `viewer.html` | Full-screen guide viewer (top bar with back and EN/ES/FR/IT) used by the website embed |
+| `360/index.html` | 360 Photo Booth Guide: interactive, self-contained, EN/ES/FR/IT |
 | `assets/embed.js` | Script the website loads to show the section and open guides |
 | `assets/cover-*.jpg` | App screens used on the cover |
 
@@ -38,7 +38,7 @@ Edit these, never the published files directly, then run `python3 src/build.py`:
 
 | Source | Builds |
 |---|---|
-| `src/guide/template.html` (texts EN/ES/FR, pins, layout) + `src/guide/imgs.js` (screenshots) | `360/index.html` |
+| `src/guide/template.html` (texts EN/ES/FR/IT, pins, layout) + `src/guide/imgs.js` (screenshots) | `360/index.html` |
 | `src/page/page.tpl.html` + `src/page/covers.json` | `index.html` |
 | `src/page/embed.js`, `src/page/viewer.html` | `assets/embed.js`, `viewer.html` |
 

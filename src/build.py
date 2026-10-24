@@ -33,7 +33,7 @@ if(EMBED){document.documentElement.classList.add("embed");const root=document.ge
 '''
 i = t.rindex('</script>'); t = t[:i] + emb + t[i:]
 t = t.replace('<title>Selfie Booth AI Tutorials</title>', '<title>Tutorials · Selfie Booth AI</title>', 1)
-meta = '<meta name="description" content="Interactive tutorials for the Selfie Booth AI app: learn the 360 Photo Booth screen by screen, in English, Spanish and French.">\n'
+meta = '<meta name="description" content="Interactive tutorials for the Selfie Booth AI app: learn the 360 Photo Booth screen by screen, in English, Spanish, French and Italian.">\n'
 assert '__QA1__' not in t
 open(f'{R}/index.html', 'w').write(HEAD + meta + BASE + t + '\n</html>\n')
 
